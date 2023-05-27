@@ -1,0 +1,2 @@
+#!/bin/bash
+eval $(cat ~/.local/share/fish/fish_history | grep "cmd"| awk -F ':' '{print $NF}' | fzf)

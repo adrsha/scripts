@@ -1,0 +1,8 @@
+
+#!/bin/bash
+fi="$(pwd)/$1" 
+parent="$(dirname "$(pwd)/$1")" 
+# echo $fi
+mv $fi '/home/chilly/.dotfiles/'
+sudo ln -s "/home/chilly/.dotfiles/$1" $parent
+# echo "/home/chilly/dotfiles/$1"

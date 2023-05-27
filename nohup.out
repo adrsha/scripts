@@ -1,0 +1,33 @@
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: input.c:2228: stray button release event (compositor bug?)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+ err: wayland.c:1784: failed to roundtrip Wayland display: Connection reset by peer
+ err: wayland.c:1784: failed to roundtrip Wayland display: Connection reset by peer
+ err: wayland.c:1784: failed to roundtrip Wayland display: Connection reset by peer
+ err: wayland.c:1784: failed to roundtrip Wayland display: Connection reset by peer
+ err: wayland.c:1784: failed to roundtrip Wayland display: Connection reset by peer
+ err: wayland.c:1784: failed to roundtrip Wayland display: Connection reset by peer
+ err: wayland.c:1749: failed to flush wayland socket: Connection reset by peer
+ err: wayland.c:1248: failed to read events from the Wayland socket: Connection reset by peer
+warn: server.c:72: client FD=-1: terminal still alive
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: server.c:72: client FD=-1: terminal still alive
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+ err: wayland.c:1749: failed to flush wayland socket: Connection reset by peer
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: server.c:72: client FD=26: terminal still alive
+warn: server.c:72: client FD=9: terminal still alive
+ err: terminal.c:101: failed to synchronously write 3 bytes to slave: Bad file descriptor
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)

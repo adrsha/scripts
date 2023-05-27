@@ -1,0 +1,13 @@
+#!/bin/bash
+todocount="$( ls /home/chilly/Scripts/todos/ | wc -l )"
+if [ $1 == 'add' ];then
+  nvim "/tmp/todo"
+  mkdir  "/home/chilly/Scripts/todos/ $2  $( cat "/tmp/todo" )"
+  rm -rf "/tmp/todo"
+elif [ $1 == 'show' ];then
+  exa --tree --level 1 /home/chilly/Scripts/todos/
+elif [ $1 == 'done' ];then
+  mv "/home/chilly/Scripts/todos/ $2"* "/home/chilly/Scripts/todos/ $2  DONE"
+elif [ $1 == 'remove' ];then
+  rm -rf  "/home/chilly/Scripts/todos/ $2  DONE"
+fi
