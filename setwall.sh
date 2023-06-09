@@ -1,1 +1,1 @@
-/home/chilly/Themes/walls/latte
+/home/chilly/Themes/walls/material
