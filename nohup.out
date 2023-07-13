@@ -1,0 +1,110 @@
+warn: server.c:72: client FD=7: terminal still alive
+[destroyed object]: error 3: xdg_surface has never been configured
+ err: wayland.c:1784: failed to roundtrip Wayland display: Protocol error
+ err: wayland.c:1749: failed to flush wayland socket: Protocol error
+/home/chilly/Scripts/footrestart.sh: line 2: 11424 Hangup                  foot -s
+[2023-07-04 17:18:44.347] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:18:44.348] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:18:44.763] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:18:44.763] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+[2023-07-04 17:22:05.624] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:22:05.625] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:22:05.938] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:22:05.939] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+warn: server.c:72: client FD=15: terminal still alive
+warn: server.c:72: client FD=7: terminal still alive
+warn: server.c:72: client FD=16: terminal still alive
+ err: render.c:3681: TIOCSWINSZ: Bad file descriptor
+warn: server.c:72: client FD=24: terminal still alive
+[2023-07-04 17:25:26.462] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:25:26.462] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:25:26.718] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:25:26.718] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[destroyed object]: error 3: xdg_surface has never been configured
+ err: wayland.c:1784: failed to roundtrip Wayland display: Protocol error
+ err: wayland.c:1749: failed to flush wayland socket: Protocol error
+[2023-07-04 17:25:33.478] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:25:33.479] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:25:33.736] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:25:33.736] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[2023-07-04 17:25:41.676] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:25:41.676] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:25:41.944] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:25:41.944] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: server.c:72: client FD=7: terminal still alive
+[2023-07-04 17:27:38.106] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:27:38.106] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:27:38.352] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:27:38.352] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[2023-07-04 17:29:42.444] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:29:42.444] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:29:42.719] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:29:42.719] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[destroyed object]: error 3: xdg_surface has never been configured
+ err: wayland.c:1784: failed to roundtrip Wayland display: Protocol error
+ err: wayland.c:1749: failed to flush wayland socket: Protocol error
+warn: server.c:72: client FD=7: terminal still alive
+warn: server.c:72: client FD=16: terminal still alive
+ err: render.c:3681: TIOCSWINSZ: Bad file descriptor
+[2023-07-04 17:29:56.644] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:29:56.644] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:29:56.892] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:29:56.892] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[2023-07-04 17:30:10.302] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:30:10.302] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:30:10.632] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:30:10.632] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[2023-07-04 17:30:14.778] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:30:14.778] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:30:15.030] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:30:15.030] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+warn: server.c:72: client FD=7: terminal still alive
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+[2023-07-04 17:32:18.168] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:32:18.169] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:32:18.463] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:32:18.463] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+[2023-07-04 17:32:52.115] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:32:52.116] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:32:52.422] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:32:52.422] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[2023-07-04 17:43:42.297] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:43:42.298] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:43:42.578] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:43:42.578] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: server.c:72: client FD=7: terminal still alive
+[destroyed object]: error 3: xdg_surface has never been configured
+ err: wayland.c:1784: failed to roundtrip Wayland display: Protocol error
+ err: wayland.c:1749: failed to flush wayland socket: Protocol error
+[2023-07-04 17:43:49.501] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-04 17:43:49.502] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-04 17:43:49.819] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-04 17:43:49.819] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+[2023-07-12 21:36:12.115] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-12 21:36:12.218] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-12 21:36:12.444] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-12 21:36:12.444] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: server.c:72: client FD=7: terminal still alive
+warn: server.c:72: client FD=15: terminal still alive
+warn: server.c:72: client FD=26: terminal still alive
+[2023-07-12 22:12:31.903] [info] Using configuration file /home/chilly/.config/waybar/config.jsonc
+[2023-07-12 22:12:31.904] [info] Using CSS file /home/chilly/.config/waybar/style.css
+[2023-07-12 22:12:32.172] [warning] Requested height: 16 is less than the minimum height: 42 required by the modules
+[2023-07-12 22:12:32.172] [info] Bar configured (width: 1920, height: 42) for output: eDP-1
+warn: terminal.c:1861: slave exited with signal 15 (Terminated)
+warn: server.c:72: client FD=7: terminal still alive
+warn: server.c:72: client FD=16: terminal still alive

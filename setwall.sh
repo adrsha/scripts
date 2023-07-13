@@ -1,1 +1,1 @@
-/home/chilly/Themes/walls/material
+/home/chilly/Themes/walls/code
