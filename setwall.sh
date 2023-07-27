@@ -1,1 +1,1 @@
-/home/chilly/Themes/walls/code
+/home/chilly/Themes/walls/nord
