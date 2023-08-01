@@ -1,29 +1,54 @@
 #!/bin/bash
+get_volume() {
+    echo "$(expr "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) * 100" | bc -l | awk -F '.' '{ print $1 }')"
+}
+get_bat(){
+    echo "$( cat /sys/class/power_supply/BAT0/capacity )"
+}
+day_percent(){
+    echo $(expr $(expr $(date +'%k') \* 60 + $(date +"%M")) \* 100 / 1440 )
+}
+notify_vol(){
+    if [ ! $(get_volume) ];then
+        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "It's Muted"
+    else
+        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:"$(get_volume)" "$(get_volume)%"
+    fi
+}
+notify_mute(){
+    if [ ! $(get_volume) ];then
+        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "Muted"
+    else
+        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:$(get_volume) "Unmuted"
+    fi
+}
 
 if [ $1 == 'mute' ];then
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    # && notify-send -a "Volume Level" "0%" -i "/home/chilly/Pictures/icons/volume-low.png" -t 5000 -r 8880
-    # else
-    #     notify-send -a "Volume Level " "0% " -i "/home/chilly/Pictures/icons/volume-low.png" -t 5000 -r 8880
-elif [ $1 == 'time' ];then
-    notify-send -a "Current Time" "$( date +'%l:%M %P')"
-elif [ $1 == 'date' ];then
-    notify-send -a "Current Date" "$( date +'%A, %B %d')"
-elif [ $1 == 'battery' ];then
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle & notify_mute
+
+    elif [ $1 == 'time' ];then
+    # notify-send -e -a " " -h string:x-canonical-private-synchronous:sys-notify -t 2000 -h  int:value:"$(day_percent)" "$( date +'%l:%M %P')"
+    notify-send -a " " "$( date +'%l:%M %P')" -t 2000
+
+    elif [ $1 == 'date' ];then
+    notify-send -a " " "$( date +'%A, %B %d')" -t 2000
+
+    elif [ $1 == 'battery' ];then
     if [ -f "/tmp/b-charging" ];then
-        notify-send -a "Battery Level " " $( cat /sys/class/power_supply/BAT0/capacity )% "
+        notify-send -e -a "󰂄" -h string:x-canonical-private-synchronous:sys-notify -t 1000 -h  int:value:"$(get_bat)" "$(get_bat)%"
         elif [ -f "/tmp/b-discharging" ];then
-        notify-send -a "Battery Level" "  $( cat /sys/class/power_supply/BAT0/capacity )% "
+        notify-send -e -a "󰂂" -h string:x-canonical-private-synchronous:sys-notify -t 1000 -h  int:value:"$(get_bat)" "$(get_bat)%"
     else
-        notify-send -a "Battery Level" "$( cat /sys/class/power_supply/BAT0/capacity )%"
+        notify-send -e -a "󰂃" -h string:x-canonical-private-synchronous:sys-notify -t 1000 -h  int:value:"$(get_bat)" "$(get_bat)%"
     fi
+
+    elif [ $1 == 'volup' ];then
+    if [[ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) < 1 ]];then
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ & notify_vol
+    else
+        notify_vol
+    fi
+
+    elif [ $1 == 'voldown' ];then
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- & notify_vol
 fi
-# elif [ $1 == 'volup' ];then
-#     if [[ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) < 1 ]];then
-#         wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+  && notify-send -a "Volume Level" "$(expr "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) * 100" | bc -l | awk -F '.' '{ print $1 }' )%"
-#         # else
-#         # notify-send -a "Volume Level is" "$(expr "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) * 100" | bc -l | awk -F '.' '{ print $1 }' )%" -i "/home/chilly/Pictures/icons/volume.png" -t 5000 -r 8880
-#     fi
-# elif [ $1 == 'voldown' ];then
-#     wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-
-#     # && notify-send -a "Volume Level" "$(expr "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) * 100" | bc -l | awk -F '.' '{ print $1 }' )%" -i "/home/chilly/Pictures/icons/volume.png" -t 500 -r 8880

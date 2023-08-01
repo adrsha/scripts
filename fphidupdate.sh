@@ -5,4 +5,4 @@ fd --color=never --search-path /hdd -t d --exclude node_modules -I -l -F |awk '{
 fd --color=never --search-path /home/chilly/.config/ -t f --exclude node_modules -I -l -F |awk '{print $NF}' >> /home/chilly/Scripts/data/filepaths.txt
 fd --color=never --search-path /hdd -t f --exclude node_modules -I -l -F |awk '{print $NF}' >> /home/chilly/Scripts/data/filepaths.txt
 
-notify-send -a "Filesystem Reloaded!" "Your filesystem has been reloaded."
+notify-send -a "Filesystem Reloaded!" "Filesystem has been reloaded."
