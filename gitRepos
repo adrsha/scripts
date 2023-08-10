@@ -1,0 +1,20 @@
+#!/bin/python3
+import os
+import subprocess
+
+repos = []
+filtered = []
+
+repos1 = subprocess.getoutput("sudo find ~/ -iname '.git'").split("\n")
+repos2 = subprocess.getoutput("sudo find /hdd -iname '.git'").split("\n")
+
+repos = repos1 + repos2
+
+for r in repos:
+    if ".local" not in r and ".cache" not in r and ".cargo" not in r:
+        filtered.append(r)
+stri = ""
+for val in filtered:
+    stri += val.replace(".git", "") + "\n"
+
+os.system(f"echo '{stri}' | fzf")
