@@ -100,7 +100,7 @@ def edit():
 
 
 def insertTodo(ind, val):
-    if "," in ind:
+    if "," in str(ind):
         indF = int(ind.split(",")[0]) - 1
         indS = int(ind.split(",")[-1])
         colInd = findIndex(todos[indF], ":", indS)
@@ -171,7 +171,8 @@ def show(terminal=False):
     elif terminal:
         os.system("clear")
         output = subprocess.getoutput("ps | grep 'tty' | wc -l ")
-        if output == "0":
+        output1 = subprocess.getoutput("ps | grep 'pts' | wc -l ")
+        if output == "0" and int(output1) > 0:
             show()
     else:
         os.system("clear")
@@ -186,15 +187,15 @@ def show(terminal=False):
                 if ":" in x:
                     group = x.split(":")
                     print(
-                        f"\033[1m{asc_colors['yellow']} {asc_colors['magenta']} {group.pop(0)} {asc_colors['green']}{asc_colors['green']}{asc_colors['greenBg']} {i+1}{asc_colors['defBg']}{asc_colors['green']}",
+                        f"\033[1m{asc_colors['yellow']} {asc_colors['magenta']} {group.pop(0)} {asc_colors['green']}{asc_colors['green']}{asc_colors['greenBg']} {i+1}{asc_colors['defBg']}{asc_colors['green']}",
                     )
                     for j, el in enumerate(group):
                         print(
-                            f"\033[1m{asc_colors['black']}   {asc_colors['grey']} {el} {asc_colors['green']} {i+1},{j+1}\033[0m",
+                            f"{asc_colors['black']}   {asc_colors['red']} {el} {asc_colors['green']} {i+1},{j+1}\033[0m",
                         )
                 else:
                     print(
-                        f"\033[0m{asc_colors['yellow']} {asc_colors['magenta']} {x} {asc_colors['green']}{asc_colors['greenBg']} {i+1}{asc_colors['defBg']}{asc_colors['green']}",
+                        f"\033[0m{asc_colors['yellow']} {asc_colors['magenta']} {x} {asc_colors['green']}{asc_colors['greenBg']} {i+1}{asc_colors['defBg']}{asc_colors['green']}",
                     )
 
 
@@ -234,27 +235,29 @@ elif inde == "m":
             oldindex = oldindex + ",0"
         elif "," not in newindex:
             newindex = newindex + ",0"
-    moveVal = (
-        todos[int(oldindex.split(",")[0]) - 1]
-        .split(":")[int(oldindex.split(",")[1])]
-        .replace("\n", "")
-    )
-    # print(todos, newindex, oldindex)
-    if newindex.split(",")[0] == oldindex.split(",")[0]:
-        if newindex.split(",")[1] < oldindex.split(",")[1]:
-            insertTodo(newindex, moveVal)
-            oldindex = (
-                oldindex.split(",")[0] + "," + str(int(oldindex.split(",")[1]) + 1)
-            )
-        else:
-            insertTodo(
-                newindex.split(",")[0] + "," + str(int(newindex.split(",")[1]) + 1),
-                moveVal,
-            )
-
-    # print(todos, newindex, oldindex)
+        moveVal = (
+            todos[int(oldindex.split(",")[0]) - 1]
+            .split(":")[int(oldindex.split(",")[1])]
+            .replace("\n", "")
+        )
+        # print(todos, newindex, oldindex)
+        if newindex.split(",")[0] == oldindex.split(",")[0]:
+            if newindex.split(",")[1] < oldindex.split(",")[1]:
+                insertTodo(newindex, moveVal)
+                oldindex = (
+                    oldindex.split(",")[0] + "," + str(int(oldindex.split(",")[1]) + 1)
+                )
+            else:
+                insertTodo(
+                    newindex.split(",")[0] + "," + str(int(newindex.split(",")[1]) + 1),
+                    moveVal,
+                )
+    else:
+        insertTodo(newindex, todos[int(oldindex) - 1])
+        if int(newindex) < int(oldindex):
+            oldindex = str(int(oldindex) + 1)
     remove(oldindex)
-    # print(todos, newindex, oldindex)
+    # print(todos)
     for t in todos:
         putVal(t)
     show()

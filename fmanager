@@ -1,0 +1,24 @@
+#!/bin/python3
+
+import subprocess
+import os
+import sys
+
+dirs = []
+
+if len(sys.argv) > 1:
+    print(len(sys.argv))
+    for i in range(len(sys.argv)):
+        dirs.append(sys.argv[i])
+else:
+    dirs = subprocess.getoutput("ls ~/Downloads/").split("\n")
+
+for d in dirs:
+    if ".pdf" in d or ".doc" in d or ".docx" in d or ".ppt" in d or ".tex" in d:
+        os.system(f"mv ~/Downloads/{d} ~/Documents/")
+    elif ".png" in d or ".jpg" in d or ".jpeg" in d or ".gif" in d or ".webp" in d:
+        os.system(f"mv ~/Downloads/{d} ~/Pictures/")
+    elif ".mp4" in d:
+        os.system(f"mv ~/Downloads/{d} ~/Videos/")
+    elif ".mp3" in d:
+        os.system(f"mv ~/Downloads/{d} ~/Music/")
