@@ -44,11 +44,14 @@ if [ $1 == 'mute' ];then
 
     elif [ $1 == 'volup' ];then
     if [[ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) < 1 ]];then
-        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ & notify_vol
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+ & notify_vol
     else
         notify_vol
     fi
 
     elif [ $1 == 'voldown' ];then
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- & notify_vol
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%- & notify_vol
+
+    elif [ $1 == 'welcome' ];then
+    notify-send -a "Welcome" -t 5000 "Its $( date +'%A, %B %d')."
 fi

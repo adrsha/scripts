@@ -2,28 +2,28 @@
 
 # Set the file name as the first argument
 file="$1"
-if [ $file ];then
-    echo -e "\033[1mOpened: \033[34m\033[30;44m\033[1m$file\033[30;m\033[34m"
+if [ "$file" ];then
+    echo -e "\033[1mOpened: \033[34m\033[30;44m\033[1m$file\033[30;0m\033[34m"
     # Get the mimetype of the file
     mimetype="$(file -b --mime-type "$file")"
     # Launch the file based on the mimetype
     case "$mimetype" in
-        "text/"*)                   # plain text file
+        "text/"*)       
             nvim "$file"
             ;;
         "image/"* | "inode/directory")
             imv -s crop "$file"
             ;;
-        "video/"* | "audio/"*)   # multimedia file
+        "video/"* | "audio/"*)   
             mpv "$file" &
             ;;
-        "application/pdf")              # PDF file
-            zathura "$file" &
+        "application/pdf")              
+            zathura "$file" | evince "$file" &
             ;;
         "application/msword" | "application/vnd.openxmlformats-officedocument.wordprocessingml.document" | "application/vnd.ms-excel" | "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" | "application/vnd.ms-powerpoint" | "application/vnd.openxmlformats-officedocument.presentationml.presentation") # PowerPoint presentation
             libreoffice "./$file"
             ;;
-        *)                              # unknown file type
+        *)
             echo "Unknown file type: $mimetype"
             ;;
     esac
