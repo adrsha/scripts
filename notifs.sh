@@ -10,16 +10,16 @@ day_percent(){
 }
 notify_vol(){
     if [ ! $(get_volume) ];then
-        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "It's Muted"
+        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "It's Muted"
     else
-        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:"$(get_volume)" "$(get_volume)%"
+        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:"$(get_volume)" "$(get_volume)%"
     fi
 }
 notify_mute(){
     if [ ! $(get_volume) ];then
-        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "Muted"
+        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "Muted"
     else
-        notify-send -e -a "" -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:$(get_volume) "Unmuted"
+        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:$(get_volume) "Unmuted"
     fi
 }
 
@@ -28,18 +28,18 @@ if [ $1 == 'mute' ];then
 
     elif [ $1 == 'time' ];then
     # notify-send -e -a " " -h string:x-canonical-private-synchronous:sys-notify -t 2000 -h  int:value:"$(day_percent)" "$( date +'%l:%M %P')"
-    notify-send -a " " "$( date +'%l:%M %P')" -t 2000
+    notify-send "Time  " "It is $( date +'%l:%M %P')" -t 2000 -A "Thats Nice!" -A "Okay"
 
     elif [ $1 == 'date' ];then
-    notify-send -a " " "$( date +'%A, %B %d')" -t 2000
+    notify-send "Calendar  " "$( date +'%A, %B %d')" -t 2000
 
     elif [ $1 == 'battery' ];then
-    if [ -f "/tmp/b-charging" ];then
-        notify-send -e -a "󰂄" -h string:x-canonical-private-synchronous:sys-notify -t 1000 -h  int:value:"$(get_bat)" "$(get_bat)%"
-        elif [ -f "/tmp/b-discharging" ];then
-        notify-send -e -a "󰂂" -h string:x-canonical-private-synchronous:sys-notify -t 1000 -h  int:value:"$(get_bat)" "$(get_bat)%"
+    if [ "$(cat /sys/class/power_supply/BAT0/status)" == 'Charging' ];then
+        notify-send -e "Battery 󰂄" -t 1000 "$(get_bat)%" -A "Thats Nice!" -A "Charging"
+        elif [ "$(cat /sys/class/power_supply/BAT0/status)" == 'Discharging' ];then
+        notify-send -e "Battery 󰂂" -t 1000 "$(get_bat)%" -A "Thats Nice!" -A "Discharging"
     else
-        notify-send -e -a "󰂃" -h string:x-canonical-private-synchronous:sys-notify -t 1000 -h  int:value:"$(get_bat)" "$(get_bat)%"
+        notify-send -e "Battery 󰂃" -t 1000 "$(get_bat)%" -A "Thats Nice!" -A "Mis-charging"
     fi
 
     elif [ $1 == 'volup' ];then
@@ -53,5 +53,5 @@ if [ $1 == 'mute' ];then
     wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%- & notify_vol
 
     elif [ $1 == 'welcome' ];then
-    notify-send -a "Welcome" -t 5000 "Its $( date +'%A, %B %d')."
+    notify-send "Welcome" -t 5000 "Its $( date +'%A, %B %d' )."
 fi
