@@ -1,8 +1,0 @@
-~/Themes/scripts/gtk.sh $1
-~/Themes/scripts/hyprland.sh $1
-~/Themes/scripts/walls.sh $1
-~/Themes/scripts/mako.sh $1
-~/Themes/scripts/chrome.sh $1
-~/Themes/scripts/wofi.sh $1
-~/Themes/scripts/nvim.sh $1
-~/Themes/scripts/kitty.sh $1

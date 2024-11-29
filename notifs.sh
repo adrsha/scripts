@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 get_volume() {
     echo "$(expr "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) * 100" | bc -l | awk -F '.' '{ print $1 }')"
 }

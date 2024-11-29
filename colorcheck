@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 #    This is slightly altered from the original which is found here:
 #    http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
