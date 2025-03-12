@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3
 # !TODO Move the elements (priority)
 import os
 import subprocess
@@ -72,7 +72,7 @@ if len(sys.argv) > 1:
 else:
     inde = "s"
 
-file = open("/home/chilly/Scripts/todo.txt", "r")
+file = open("/home/chilly/Notes/todo.md", "r")
 for t in file:
     if t != "\n":
         todos.append(t)
@@ -80,7 +80,7 @@ for t in file:
 
 def clearFile():
     os.system(
-        "rm -rf /home/chilly/Scripts/todo.txt && touch /home/chilly/Scripts/todo.txt"
+        "rm -rf /home/chilly/Notes/todo.md && touch /home/chilly/Notes/todo.txt"
     )
 
 

@@ -1,57 +1,85 @@
 #!/usr/bin/env bash
+
 get_volume() {
-    echo "$(expr "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) * 100" | bc -l | awk -F '.' '{ print $1 }')"
+    wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d\n", $2 * 100}'
 }
-get_bat(){
-    echo "$( cat /sys/class/power_supply/BAT0/capacity )"
+
+get_bat() {
+    cat /sys/class/power_supply/BAT0/capacity
 }
-day_percent(){
-    echo $(expr $(expr $(date +'%k') \* 60 + $(date +"%M")) \* 100 / 1440 )
+
+day_percent() {
+    hour=$(date +'%k')
+    min=$(date +'%M')
+    echo $(( (hour * 60 + min) * 100 / 1440 ))
 }
-notify_vol(){
-    if [ ! $(get_volume) ];then
-        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "It's Muted"
+
+send_notification() {
+    local title="$1"
+    local message="$2"
+    local value="$3"
+    local timeout="${4:-1000}"
+    
+    if [ -n "$value" ]; then
+        notify-send -e "$title" -h string:x-canonical-private-synchronous:sys-notify -h int:value:"$value" "$message" -t "$timeout" || \
+            hyprctl notify 1 3000 "rgb(0C1418)" "fontsize:19 $message"
     else
-        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:"$(get_volume)" "$(get_volume)%"
+        notify-send "$title" "$message" -t "$timeout" || \
+            hyprctl notify 1 3000 "rgb(0C1418)" "fontsize:19 $message"
     fi
 }
-notify_mute(){
-    if [ ! $(get_volume) ];then
-        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:0 "Muted"
+
+notify_vol() {
+    local volume=$(get_volume)
+    if [ -z "$volume" ] || [ "$volume" = "0" ]; then
+        send_notification "Volume " "It's Muted" "0"
     else
-        notify-send -e "Volume " -h string:x-canonical-private-synchronous:sys-notify -t 555 -h  int:value:$(get_volume) "Unmuted"
+        send_notification "Volume " "$volume%" "$volume"
     fi
 }
 
-if [ $1 == 'mute' ];then
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle & notify_mute
-
-    elif [ $1 == 'time' ];then
-    # notify-send -e -a " " -h string:x-canonical-private-synchronous:sys-notify -t 2000 -h  int:value:"$(day_percent)" "$( date +'%l:%M %P')"
-    notify-send "Time  " "It is $( date +'%l:%M %P')" -t 2000 -A "Thats Nice!" -A "Okay"
-
-    elif [ $1 == 'date' ];then
-    notify-send "Calendar  " "$( date +'%A, %B %d')" -t 2000
-
-    elif [ $1 == 'battery' ];then
-    if [ "$(cat /sys/class/power_supply/BAT0/status)" == 'Charging' ];then
-        notify-send -e "Battery 󰂄" -t 1000 "$(get_bat)%" -A "Thats Nice!" -A "Charging"
-        elif [ "$(cat /sys/class/power_supply/BAT0/status)" == 'Discharging' ];then
-        notify-send -e "Battery 󰂂" -t 1000 "$(get_bat)%" -A "Thats Nice!" -A "Discharging"
+notify_mute() {
+    local volume=$(get_volume)
+    if [ -z "$volume" ] || [ "$volume" = "0" ]; then
+        send_notification "Volume " "Muted" "0"
     else
-        notify-send -e "Battery 󰂃" -t 1000 "$(get_bat)%" -A "Thats Nice!" -A "Mis-charging"
+        send_notification "Volume " "Unmuted" "$volume"
     fi
+}
 
-    elif [ $1 == 'volup' ];then
-    if [[ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ' ' '{ print $NF }' ) < 1 ]];then
-        wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+ & notify_vol
-    else
+case "$1" in
+    'mute')
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+        notify_mute
+        ;;
+    'time')
+        send_notification "Time 󰥔" "It is $(date +'%l:%M %P')" "$(day_percent)"
+        ;;
+    'date')
+        send_notification "Calendar " "$(date +'%A, %B %d')"
+        ;;
+    'battery')
+        status=$(cat /sys/class/power_supply/BAT0/status)
+        battery_level=$(get_bat)
+        case "$status" in
+            'Charging')    icon="󰂄" ;;
+            'Discharging') icon="󰂂" ;;
+            *)            icon="󰂃" ;;
+        esac
+        send_notification "Battery $icon" "$battery_level% $status" "$battery_level"
+        ;;
+    'volup')
+        current_vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')
+        if [ "$(awk 'BEGIN{print ('"$current_vol"' < 1)}')" = "1" ]; then
+            wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+
+        fi
         notify_vol
-    fi
-
-    elif [ $1 == 'voldown' ];then
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%- & notify_vol
-
-    elif [ $1 == 'welcome' ];then
-    notify-send "Welcome" -t 5000 "Its $( date +'%A, %B %d' )."
-fi
+        ;;
+    'voldown')
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-
+        notify_vol
+        ;;
+    'welcome')
+        send_notification "Welcome" "It's $(date +'%A, %B %d')."
+        ;;
+esac
